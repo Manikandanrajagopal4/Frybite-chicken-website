@@ -1,0 +1,409 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Margarine&family=Roboto:ital,wght@0,100..900;1,100..900&family=Satisfy&display=swap');
+
+/* ---- Global Reset ---- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: white;
+  color: #102a42;
+  line-height: 1.5;
+}
+
+/* ---- Buttons ---- */
+.btn {
+  background-image: linear-gradient(80deg, #f53b57, #e9b949);
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 1000px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s linear;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+.btn:hover {
+  outline: 2px solid #f53b57;
+  outline-offset: 4px;
+}
+
+/* ---- Helpers ---- */
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.section-center {
+  padding: 4rem 0;
+  width: 85vw;
+  margin: 0 auto;
+  max-width: 1170px;
+}
+
+.section-title h3 {
+  font-family: 'Margarine', cursive;
+  color: #f53b57;
+  font-size: 2rem;
+}
+
+.section-title {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* ---------------------------------------------------- */
+/* ---- Corrected Navbar Logic for Toggle Behavior ---- */
+/* ---------------------------------------------------- */
+
+.nav-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+  z-index: 1100;
+}
+.nav-btn img {
+  width: 30px;
+  /* Set icon color for visibility over the dark menu when open */
+  filter: brightness(0) invert(1); 
+  transition: filter 0.3s ease;
+}
+/* Revert icon color when the menu is closed (to be visible over the header background) */
+#nav-check:not(:checked) ~ .nav-btn img {
+  filter: none;
+}
+.nav-btn img:hover {
+  filter: brightness(0) invert(1);
+}
+
+#nav-check {
+  display: none;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0; /* Start position for transform */
+  width: 250px;
+  height: 100%;
+  /* Initially hide the menu off-screen */
+  transform: translateX(-100%); 
+  background-color: rgba(0, 0, 0, 0.95);
+  box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease; /* Transition the transform property */
+  z-index: 1000;
+  padding-top: 60px;
+}
+
+/* Show the menu when the checkbox is checked */
+#nav-check:checked ~ .navbar {
+  transform: translateX(0);
+}
+
+.navbar-header {
+  text-align: center;
+  padding: 2rem 0;
+  position: relative;
+}
+.navbar-header h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(180deg, #f53b57 25%, #e9b949);
+  -webkit-background-clip: text; /* Add vendor prefix */
+  background-clip: text;
+  color: transparent; /* Makes the text use the gradient */
+}
+.navbar-header img {
+  width: 90px;
+  display: block;
+  margin: 0.5rem auto;
+}
+.nav-close {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
+.nav-close img {
+  width: 25px;
+  cursor: pointer;
+  filter: invert(1); /* Ensure close icon is white on dark background */
+  transition: 0.3s;
+}
+.nav-close img:hover {
+  filter: brightness(0) invert(1);
+}
+.nav-items {
+  list-style: none;
+  padding:0;
+  margin-top: 2rem;
+}
+.nav-links {
+  color: white;
+  text-decoration: none;
+  display: block;
+  font-size: 18px;
+  padding: 15px 25px;
+  transition: all 0.3s linear ;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #ddd;
+}
+.nav-links:hover {
+  background-color:#f53b57;
+  padding-left: 1.5rem;
+  color:white;
+  transition: all 0.3s linear;
+}
+
+/* Remove the redundant Desktop view media query that forced the menu open */
+@media screen and (min-width: 768px) {
+  /* This section is left intentionally empty to override the original code, 
+     but no forced opening of the navbar is applied here. 
+     The toggle behavior is now universal. */
+}
+
+/* ---------------------------------------------------- */
+/* ---- Rest of the CSS Code (Unmodified) ---- */
+/* ---------------------------------------------------- */
+
+/* ---- Header ---- */
+.header {
+  min-height: 100vh;
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+              url("../images/bgpic.jpg") center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.banner h2 {
+  font-family: "Satisfy", cursive;
+  color: transparent;
+  background-image: linear-gradient(180deg, #f53b57, #e9b949);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.banner h1 {
+  color: white;
+  margin-top: 1rem;
+  text-shadow: 2px 3px 5px #000;
+  font-family: "Margarine", cursive;
+}
+
+/* ---- Divider ---- */
+.content-divider {
+  height: 6px;
+  background: linear-gradient(to right, #f53b57, #e9b949, #f53b57);
+}
+
+/* ---- Features ---- */
+.features {
+  background-color: #f1f5f8;
+  text-align: center;
+}
+.feature {
+  padding: 2rem 1rem;
+  transition: 0.3s;
+}
+.feature-icon img {
+  width: 60px;
+  margin-bottom: 1rem;
+}
+.feature:hover {
+  background-color: lightpink;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.feature h4 {
+  margin-bottom: 0.5rem;
+}
+@media screen and (min-width: 768px) {
+  .feature {
+    float: left;
+    width: 25%;
+  }
+}
+
+/* ---- About ---- */
+.about {
+  text-align: center;
+  padding:60px 20px;
+  background-color: white;
+}
+.about-picture-container {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+.about-picture-container img {
+  width: 100%;
+  display: block;
+  padding: 50px;
+  transition: 0.4s;
+}
+.about-picture-container:hover img {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+.about-text {
+  text-align: center;
+  color: #555;
+  margin: 1rem 0;
+}
+@media screen and (min-width: 992px) {
+  .about-img, .about-info {
+    float: left;
+    width: 50%;
+  }
+  .about-info {
+    padding-left: 2rem;
+  }
+}
+
+/* ---- Products ---- */
+.products {
+  background-color: #f1f1f1;
+}
+.product {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.product-img {
+  width: 100%;
+  padding: 30px;
+  border-radius: 5px;
+  height: 250px;
+  object-fit: cover;
+  transition: 0.3s;
+}
+.product-img:hover {
+  transform: scale(1.05);
+}
+.product-title {
+  margin: 0.5rem 0;
+}
+.product-price {
+  color: #f53b57;
+  font-weight: bold;
+}
+@media screen and (min-width: 768px) {
+  .product {
+    float: left;
+    width: 33.33%;
+    padding: 0 1rem;
+  }
+}
+
+/* ---- Services ---- */
+.services {
+  background: #fff;
+  padding: 4rem 0;
+}
+.services-title {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.service-card {
+  background: #f1f5f8;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 2rem;
+  transition: 0.3s;
+  padding: 1rem;
+}
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.service-icon img {
+  width: 50px;
+  margin-bottom: 1rem;
+}
+.service-info h4 {
+  margin-bottom: 0.5rem;
+}
+@media screen and (min-width: 992px) {
+  .service-card {
+    float: left;
+    width: 30%;
+    margin-right: 3.33%;
+  }
+}
+
+/* ---- Contact ---- */
+.contact {
+  background: #f1f5f8;
+  padding: 3rem 0;
+}
+.contact-item {
+  margin-bottom: 1rem;
+}
+.contact-text {
+  color: #444;
+}
+.contact-form {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.contact-form h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+.form-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+.form-control {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 1rem;
+}
+.form-label {
+  position: absolute;
+  left: 10px;
+  top: -10px;
+  background: white;
+  font-size: 0.85rem;
+  color: #888;
+  padding: 0 5px;
+}
+.submit-btn {
+  display: block;
+  margin: 1rem auto 0;
+}
+
+/* ---- Footer ---- */
+.footer {
+  background: #222;
+  color: #fff;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+.social-icons img {
+  width: 35px;
+  margin: 0 0.5rem;
+  transition: 0.3s;
+}
+.social-icons img:hover {
+  transform: scale(1.1);
+  background-color: #f53b57;
+}
+.footer-text {
+  color:#f1f1f1;
+  margin-top: 1rem;
+  text-transform: capitalize;
+  font-size: 0.9rem;
+}
+.company {
+  color: #f53b57;
+}
