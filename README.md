@@ -1,4 +1,5 @@
-🍗 Fry Bite Chicken Website✨
+                                                                   🍗 Fry Bite Chicken Website✨
+                                                                   
 Project Description:
 The Fry Bite Chicken (FBC) website is a modern, responsive, static landing page designed to showcase the restaurant's brand, menu, and contact details. It is built purely with HTML, CSS, and  JavaScript, focusing on a clean aesthetic and optimal user experience across all de2vices.
 🌟 Key Features:
