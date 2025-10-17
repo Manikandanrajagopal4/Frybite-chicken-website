@@ -1,7 +1,31 @@
-                                                                   🍗 Fry Bite Chicken Website✨
-                                                                   
-Project Description:
-The Fry Bite Chicken (FBC) website is a modern, responsive, static landing page designed to showcase the restaurant's brand, menu, and contact details. It is built purely with HTML, CSS, and  JavaScript, focusing on a clean aesthetic and optimal user experience across all de2vices.
-🌟 Key Features:
-The site includes the following primary components and functionalities:Responsive Layout: Uses CSS media queries to ensure proper display on mobile, tablet, and desktop screens.Off-Canvas Navigation: A mobile-friendly sidebar menu implemented using pure CSS (#nav-check) and simple JavaScript logic for smooth closure.Form Validation: The Contact Us form uses JavaScript to validate required fields (Name, Email, Message) and check for a correct email format before attempting submission.Server Submission Ready: The JavaScript is configured to package user data and send it via the fetch API to a backend endpoint for processing (e.g., triggering an SMS/Email notification to the admin).Dedicated Sections: Clean presentation of brand narrative (About Us), product highlights (Our Recipe), and unique services (Explore Our Services).🛠️ Technologies UsedTechnologyPurposeHTML5Core structure and semantic markup.CSS3Styling, animations, and full responsiveness.Vanilla JavaScriptMobile navigation toggle and asynchronous form validation/submission.🚀 Installation and SetupThis is a static project, making it very simple to run locally in any web browser.Clone the Repository:Navigate to your desired directory and clone the project:Bashgit clone [Your-Remote-URL]
-Open the File:Navigate into the cloned folder and simply double-click the index.html file, or open it directly in your web browser.
+                                                       🍗 Fry Bite Chicken Website
+✨ Project Description:
+The Fry Bite Chicken (FBC) website is a modern, responsive, static landing page designed to showcase the restaurant's brand, menu, and contact details. It is built purely with HTML, CSS, and  JavaScript, focusing on a clean aesthetic and optimal user experience across all devices.
+
+✨ Features:
+Responsive Design: Optimized for seamless viewing and interaction across all screen sizes (mobile, tablet, and desktop).
+
+Off-Canvas Navigation: Includes a simple, pure JavaScript-controlled sidebar menu for a clean mobile interface.
+
+Form Validation: Frontend validation ensures required fields (Name, Email, Message) are correctly formatted and filled before submission.
+
+Asynchronous Submission: The contact form uses the fetch API to securely send data to a designated backend for real-time notification.
+
+Clear Structure: Dedicated sections for Features, About Us, Products, and Services.
+
+⚙️ TechnologiesUsed:
+Technology     Role
+HTML          Provides the core content and semantic structure of the website.
+CSS           Handles all styling, responsiveness, and aesthetic effects. 
+JavaScript    Controls the mobile menu functionality and handles client-side form validation and asynchronous submission.
+
+
+📞 Contact Information
+For project inquiries, collaboration, or feedback on this website:
+
+Developer: Manikandan
+
+Email: manikandanrajagopal21@gmail.com
+
+Phone : 9345688711
+                                                                  
