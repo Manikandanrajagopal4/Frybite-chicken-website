@@ -1,409 +1,752 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Margarine&family=Roboto:ital,wght@0,100..900;1,100..900&family=Satisfy&display=swap');
 
+/* Define main colors for easier maintenance */
+:root {
+    --primary-color: #f53b57; /* Red/Pink */
+    --secondary-color: #e9b949; /* Yellow/Gold */
+    --text-dark: #102a42;
+    --text-light: #555;
+    --bg-light: #f1f5f8;
+    --transition: all 0.3s linear;
+}
+
 /* ---- Global Reset ---- */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+/* --- FULL-PAGE FIXED BACKGROUND APPLIED TO BODY --- */
 body {
-  font-family: "Roboto", sans-serif;
-  background-color: white;
-  color: #102a42;
-  line-height: 1.5;
+    /* Set the image as the background for the entire body */
+    background-image: url('../images/bgpic1.jpg'); 
+    
+    /* Ensure the image covers the entire viewport */
+    background-size: cover; 
+    
+    /* Center the background image */
+    background-position: center top; 
+    
+    /* Lock the image so it doesn't scroll with the content */
+    background-attachment: fixed; 
+    
+    font-family: "Roboto", sans-serif;
+    color: var(--text-dark);
+    line-height: 1.5;
 }
 
-/* ---- Buttons ---- */
+/* ---- Buttons (General) ---- */
 .btn {
-  background-image: linear-gradient(80deg, #f53b57, #e9b949);
-  color: white;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 1000px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  text-decoration: none;
-  display: inline-block;
-  transition: all 0.3s linear;
-  cursor: pointer;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    /* Base gradient for general buttons like 'Order Now' */
+    background-image: linear-gradient(80deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 1000px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+    transition: var(--transition);
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 .btn:hover {
-  outline: 2px solid #f53b57;
-  outline-offset: 4px;
+    background-position: 100% 0; 
+    outline: 2px solid var(--primary-color);
+    outline-offset: 4px;
 }
 
 /* ---- Helpers ---- */
 .clearfix::after {
-  content: "";
-  display: table;
-  clear: both;
+    content: "";
+    display: table;
+    clear: both;
 }
 
 .section-center {
-  padding: 4rem 0;
-  width: 85vw;
-  margin: 0 auto;
-  max-width: 1170px;
-}
-
-.section-title h3 {
-  font-family: 'Margarine', cursive;
-  color: #f53b57;
-  font-size: 2rem;
+    padding: 4rem 0;
+    width: 85vw;
+    margin: 0 auto;
+    max-width: 1170px;
 }
 
 .section-title {
-  margin-bottom: 2rem;
-  text-align: center;
+    margin-bottom: 2rem;
+    text-align: center;
 }
 
+.section-title h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+.section-title h3 {
+    font-family: 'Margarine', cursive;
+    color: var(--primary-color);
+    font-size: 2rem;
+}
+
+
 /* ---------------------------------------------------- */
-/* ---- Corrected Navbar Logic for Toggle Behavior ---- */
+/* ---- Navbar (Sidebar) ---- */
 /* ---------------------------------------------------- */
 
-.nav-btn {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  cursor: pointer;
-  z-index: 1100;
+/* Combined the .nav-btn into .nav-toggle functionality for cleaner CSS */
+.nav-btn, .cart-btn {
+    position: fixed;
+    top: 20px;
+    z-index: 1100;
+    transition: var(--transition);
+    border: none;
+    background: transparent;
 }
-.nav-btn img {
-  width: 30px;
-  /* Set icon color for visibility over the dark menu when open */
-  filter: brightness(0) invert(1); 
-  transition: filter 0.3s ease;
+/* Nav menu button icon filtered white for visibility on dark background */
+.nav-btn { /* This is the menu button wrapper */
+    left: 20px;
+    cursor: pointer;
 }
-/* Revert icon color when the menu is closed (to be visible over the header background) */
-#nav-check:not(:checked) ~ .nav-btn img {
-  filter: none;
+.nav-btn label img {
+    width: 30px;
+    filter: invert(1); /* Makes the icon white */
+    transition: filter 0.3s ease;
+    cursor: pointer;
 }
-.nav-btn img:hover {
-  filter: brightness(0) invert(1);
-}
+
 
 #nav-check {
-  display: none;
+    display: none;
 }
 
 .navbar {
-  position: fixed;
-  top: 0;
-  left: 0; /* Start position for transform */
-  width: 250px;
-  height: 100%;
-  /* Initially hide the menu off-screen */
-  transform: translateX(-100%); 
-  background-color: rgba(0, 0, 0, 0.95);
-  box-shadow: 2px 0 5px rgba(0,0,0,0.2);
-  transition: transform 0.3s ease; /* Transition the transform property */
-  z-index: 1000;
-  padding-top: 60px;
+    position: fixed;
+    top: 0;
+    left: 0; 
+    width: 250px;
+    height: 100%;
+    transform: translateX(-100%); 
+    background-color: rgba(0, 0, 0, 0.95);
+    box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease; 
+    z-index: 1000;
+    padding-top: 60px;
 }
-
-/* Show the menu when the checkbox is checked */
 #nav-check:checked ~ .navbar {
-  transform: translateX(0);
+    transform: translateX(0);
 }
 
 .navbar-header {
-  text-align: center;
-  padding: 2rem 0;
-  position: relative;
+    text-align: center;
+    padding: 2rem 0;
+    position: relative;
 }
 .navbar-header h3 {
-  font-size: 1.8rem;
-  font-weight: 700;
-  background: linear-gradient(180deg, #f53b57 25%, #e9b949);
-  -webkit-background-clip: text; /* Add vendor prefix */
-  background-clip: text;
-  color: transparent; /* Makes the text use the gradient */
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: linear-gradient(180deg, var(--primary-color) 25%, var(--secondary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; 
 }
 .navbar-header img {
-  width: 90px;
-  display: block;
-  margin: 0.5rem auto;
+    width: 90px;
+    display: block;
+    margin: 0.5rem auto;
 }
-.nav-close {
-  position: absolute;
-  right: 15px;
-  top: 15px;
+
+/* Changed .nav-close to .nav-close-btn for consistency with HTML structure */
+.nav-close { 
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 0;
 }
-.nav-close img {
-  width: 25px;
-  cursor: pointer;
-  filter: invert(1); /* Ensure close icon is white on dark background */
-  transition: 0.3s;
+.nav-close label img {
+    width: 25px;
+    filter: invert(1); 
+    transition: 0.3s;
 }
-.nav-close img:hover {
-  filter: brightness(0) invert(1);
+.nav-close label img:hover {
+    filter: brightness(1.5); 
 }
+
 .nav-items {
-  list-style: none;
-  padding:0;
-  margin-top: 2rem;
+    list-style: none;
+    padding:0;
+    margin-top: 2rem;
 }
 .nav-links {
-  color: white;
-  text-decoration: none;
-  display: block;
-  font-size: 18px;
-  padding: 15px 25px;
-  transition: all 0.3s linear ;
-  letter-spacing: 0.5px;
-  border-bottom: 1px solid #ddd;
+    color: white;
+    text-decoration: none;
+    display: block;
+    font-size: 18px;
+    padding: 15px 25px;
+    transition: var(--transition);
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #333; 
 }
 .nav-links:hover {
-  background-color:#f53b57;
-  padding-left: 1.5rem;
-  color:white;
-  transition: all 0.3s linear;
-}
-
-/* Remove the redundant Desktop view media query that forced the menu open */
-@media screen and (min-width: 768px) {
-  /* This section is left intentionally empty to override the original code, 
-     but no forced opening of the navbar is applied here. 
-     The toggle behavior is now universal. */
+    background-color: var(--primary-color);
+    padding-left: 2rem; 
+    color: white;
 }
 
 /* ---------------------------------------------------- */
-/* ---- Rest of the CSS Code (Unmodified) ---- */
+/* ---- Cart Styling (Modal and Icon) ---- */
 /* ---------------------------------------------------- */
 
-/* ---- Header ---- */
+.cart-btn {
+    right: 20px;
+    background: white; 
+    padding: 5px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    /* Ensure the icon button itself is transparent */
+    background: none; 
+    cursor: pointer;
+}
+.cart-btn img {
+    width: 30px;
+    display: block;
+    background: white; /* Give the icon a white circular background like in the screenshot */
+    border-radius: 50%;
+    padding: 5px;
+}
+.cart-items-count {
+    position: absolute;
+    top: 0px; /* Adjusted position to match the small bubble in the screenshot */
+    right: 0px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px; /* Reduced padding for smaller bubble */
+    font-size: 0.75rem;
+    font-weight: 700;
+    min-width: 18px; /* Adjusted size */
+    text-align: center;
+    line-height: 1.2;
+}
+
+.cart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    visibility: hidden; 
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.cart {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 400px; 
+    background: var(--bg-light);
+    padding: 2rem;
+    z-index: 2001;
+    transform: translateX(100%);
+    transition: var(--transition);
+    overflow-y: auto; /* Allow the cart itself to scroll if content is long */
+}
+
+.show-cart {
+    visibility: visible;
+    opacity: 1;
+}
+
+.show-cart .cart {
+    transform: translateX(0);
+}
+
+.close-cart {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.close-cart img {
+    width: 25px;
+}
+
+.cart h2 {
+    margin-bottom: 2rem;
+    font-family: 'Margarine', cursive;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.cart-content {
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-bottom: 1rem;
+}
+
+/* Individual Cart Item Styling */
+.cart-item {
+    display: grid;
+    grid-template-columns: 60px 1fr auto; /* Image, Info, Controls */
+    gap: 1rem;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding: 1rem 0;
+}
+.cart-item h4 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0;
+}
+.item-price {
+    color: var(--secondary-color);
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+.remove-item {
+    color: var(--primary-color);
+    cursor: pointer;
+    font-size: 0.8rem;
+    text-align: left;
+    display: inline-block;
+    margin-top: 5px;
+    text-transform: capitalize;
+}
+
+/* Cart Item Controls (Quantity) */
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-self: end; 
+}
+.cart-item-controls button {
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}
+.cart-item-controls button img {
+    width: 18px;
+    filter: brightness(0); /* Make icons black */
+}
+.cart-item-controls .item-amount {
+    font-weight: bold;
+    font-size: 1rem;
+    width: 25px; 
+    text-align: center;
+    color: var(--text-dark);
+}
+
+/* Cart Footer */
+.cart-footer {
+    margin-top: 2rem;
+    text-align: center;
+    border-top: 1px solid #ccc;
+    padding-top: 1rem;
+    
+}
+.cart-footer h3 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: var(--text-dark);
+}
+.cart-footer .btn {
+    margin: 0 0.5rem;
+}
+
+/* ---------------------------------------------------- */
+/* ---- Header, Features, About Sections (Standard) ---- */
+/* ---------------------------------------------------- */
 .header {
-  min-height: 100vh;
-  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
-              url("../images/bgpic.jpg") center/cover no-repeat;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+    min-height: 100vh;
+    /* Keeps a transparent dark overlay for text readability over the body background */
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 .banner h2 {
-  font-family: "Satisfy", cursive;
-  color: transparent;
-  background-image: linear-gradient(180deg, #f53b57, #e9b949);
-  -webkit-background-clip: text;
-  background-clip: text;
+    font-family: "Satisfy", cursive;
+    color: transparent;
+    background-image: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
 }
 .banner h1 {
-  color: white;
-  margin-top: 1rem;
-  text-shadow: 2px 3px 5px #000;
-  font-family: "Margarine", cursive;
+    color: white;
+    margin-top: 1rem;
+    text-shadow: 2px 3px 5px #000;
+    font-family: "Margarine", cursive;
 }
-
-/* ---- Divider ---- */
 .content-divider {
-  height: 6px;
-  background: linear-gradient(to right, #f53b57, #e9b949, #f53b57);
+    height: 6px;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color), var(--primary-color));
 }
-
-/* ---- Features ---- */
 .features {
-  background-color: #f1f5f8;
-  text-align: center;
+    background-color: var(--bg-light);
+    text-align: center;
 }
 .feature {
-  padding: 2rem 1rem;
-  transition: 0.3s;
+    padding: 2rem 1rem;
+    transition: var(--transition);
 }
 .feature-icon img {
-  width: 60px;
-  margin-bottom: 1rem;
+    width: 60px;
+    margin-bottom: 1rem;
 }
 .feature:hover {
-  background-color: lightpink;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    background-color: lightpink;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 .feature h4 {
-  margin-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 @media screen and (min-width: 768px) {
-  .feature {
-    float: left;
-    width: 25%;
-  }
+    .feature {
+        float: left;
+        width: 25%;
+    }
 }
-
-/* ---- About ---- */
 .about {
-  text-align: center;
-  padding:60px 20px;
-  background-color: white;
+    background-color: white;
+    padding: 60px 20px;
+}
+.about-img {
+    width: 100%; 
+    float: none; 
+    margin-bottom: 2rem; 
 }
 .about-picture-container {
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    max-width: 400px; 
+    margin: 0 auto; 
 }
 .about-picture-container img {
-  width: 100%;
-  display: block;
-  padding: 50px;
-  transition: 0.4s;
+    width: 100%;
+    display: block;
+    padding: 50px;
+    transition: 0.4s;
 }
 .about-picture-container:hover img {
-  transform: scale(1.1);
-  opacity: 0.8;
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+.about-info {
+    width: 100%;
+    float: none; 
+    padding-left: 0; 
+}
+.about-info .section-title {
+    text-align: center;
 }
 .about-text {
-  text-align: center;
-  color: #555;
-  margin: 1rem 0;
+    text-align: center; 
+    color: var(--text-light);
+    margin: 1rem auto; 
+    max-width: 600px; 
 }
 @media screen and (min-width: 992px) {
-  .about-img, .about-info {
-    float: left;
-    width: 50%;
-  }
-  .about-info {
-    padding-left: 2rem;
-  }
+    .about-img, .about-info {
+        float: left;
+        width: 50%;
+    }
+    .about-img {
+        margin-bottom: 0; 
+    }
+    .about-picture-container {
+        margin: 0; 
+    }
+    .about-info {
+        padding-left: 2rem; 
+    }
+    .about-text {
+        text-align: left; 
+        margin: 1rem 0;
+        max-width: none;
+    }
 }
 
-/* ---- Products ---- */
+/* ---------------------------------------------------- */
+/* ---- Products & Quantity Control ---- */
+/* ---------------------------------------------------- */
 .products {
-  background-color: #f1f1f1;
+    background-color: #f1f1f1;
 }
 .product {
-  text-align: center;
-  margin-bottom: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
 }
 .product-img {
-  width: 100%;
-  padding: 30px;
-  border-radius: 5px;
-  height: 250px;
-  object-fit: cover;
-  transition: 0.3s;
+    width: 100%;
+    padding: 30px;
+    border-radius: 5px;
+    height: 250px;
+    object-fit: cover;
+    transition: 0.3s;
 }
 .product-img:hover {
-  transform: scale(1.05);
+    transform: scale(1.05);
 }
 .product-title {
-  margin: 0.5rem 0;
+    margin: 0.5rem 0;
 }
 .product-price {
-  color: #f53b57;
-  font-weight: bold;
-}
-@media screen and (min-width: 768px) {
-  .product {
-    float: left;
-    width: 33.33%;
-    padding: 0 1rem;
-  }
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-bottom: 1rem;
 }
 
-/* ---- Services ---- */
-.services {
-  background: #fff;
-  padding: 4rem 0;
+.qty-control {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(90deg, var(--primary-color), var(--secondary-color)); 
+    border-radius: 1000px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    margin-top: 10px; 
 }
+
+.qty-control .btn {
+    padding: 0.5rem 0.8rem;
+    background-image: none;
+    background: transparent; 
+    border-radius: 0;
+    box-shadow: none;
+    transition: background-color 0.2s;
+    border: none;
+}
+
+.qty-control .btn:hover {
+    background-color: rgba(0, 0, 0, 0.1); 
+    outline: none;
+}
+
+.qty-control .btn img {
+    width: 18px;
+    filter: invert(1); 
+    display: block;
+}
+
+.qty-control .qty-value {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white; 
+    padding: 0 1rem;
+    min-width: 40px; 
+    text-align: center;
+}
+
+.qty-control .qty-minus {
+    border-top-left-radius: 1000px;
+    border-bottom-left-radius: 1000px;
+}
+.qty-control .qty-plus {
+    border-top-right-radius: 1000px;
+    border-bottom-right-radius: 1000px;
+}
+
+
+@media screen and (min-width: 768px) {
+    .product {
+        float: left;
+        width: 33.33%;
+        padding: 0 1rem;
+    }
+}
+
+/* ---------------------------------------------------- */
+/* ---- Services & Contact (Standard) ---- */
+/* ---------------------------------------------------- */
+.services {
+    background: #fff;
+    padding: 4rem 0;
+}
+
 .services-title {
-  text-align: center;
-  margin-bottom: 3rem;
+    text-align: center;
+    margin-bottom: 3rem;
 }
 .service-card {
-  background: #f1f5f8;
-  border-radius: 10px;
-  text-align: center;
-  margin-bottom: 2rem;
-  transition: 0.3s;
-  padding: 1rem;
+    background: var(--bg-light);
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 2rem;
+    transition: var(--transition);
+    padding: 2rem;
+    border: 1px solid #e2e8f0;
+    position:relative;
 }
 .service-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 .service-icon img {
-  width: 50px;
-  margin-bottom: 1rem;
+    width: 50px;
+    margin-bottom: 1rem;
 }
 .service-info h4 {
-  margin-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 @media screen and (min-width: 992px) {
-  .service-card {
-    float: left;
-    width: 30%;
-    margin-right: 3.33%;
-  }
+    .service-card {
+        float: left;
+        width: 30%;
+        margin-right: 3.33%;
+    }
 }
 
-/* ---- Contact ---- */
 .contact {
-  background: #f1f5f8;
-  padding: 3rem 0;
+    background: var(--bg-light);
+    padding: 3rem 0;
 }
+
+/* Updated alignment for mobile to left-aligned */
 .contact-item {
-  margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: flex-start; 
+    gap: 10px;
+    max-width: none; 
+    margin-left: 0;
+    margin-right: 0;
+    justify-content: flex-start; 
 }
+
+/* Set contact-text to align properly with the icon */
 .contact-text {
-  color: #444;
+    color: #444;
 }
+
 .contact-form {
-  background: white;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
 }
 .contact-form h3 {
     text-align: center;
     margin-bottom: 1.5rem;
 }
+/* Form Group Styles */
 .form-group {
-  margin-bottom: 1.5rem;
-  position: relative;
+    margin-bottom: 1.5rem;
+    position: relative;
 }
 .form-control {
-  width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 10px;
-  font-size: 1rem;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 1rem;
+}
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(245, 59, 87, 0.3);
 }
 .form-label {
-  position: absolute;
-  left: 10px;
-  top: -10px;
-  background: white;
-  font-size: 0.85rem;
-  color: #888;
-  padding: 0 5px;
+    position: absolute;
+    left: 10px;
+    top: -10px;
+    background: white;
+    font-size: 0.85rem;
+    color: #888;
+    padding: 0 5px;
+}
+.form-group .error-message {
+    margin-top: 5px;
+    font-size: 0.8rem;
+    color: var(--primary-color);
+    display: none;
+}
+.form-control.error {
+    border-color: var(--primary-color);
 }
 .submit-btn {
-  display: block;
-  margin: 1rem auto 0;
+    display: block;
+    margin: 1rem auto 0;
 }
+
+/* ------------------------------------------------------------------- */
+/* --- Desktop Alignment (Details Left, Form Right) --- */
+/* ------------------------------------------------------------------- */
+@media screen and (min-width: 992px) {
+    /* Use Flexbox for side-by-side alignment in the contact section */
+    .contact .section-center { 
+        display: flex;
+        /* Revert to default row to put Details (1st item) on Left and Form (2nd item) on Right */
+        flex-direction: row; 
+        justify-content: space-between; 
+        align-items: flex-start; 
+        gap: 2rem; 
+        padding-top: 4rem; 
+        padding-bottom: 4rem; 
+    }
+
+    /* Set flex properties for the two columns */
+    .contact-details, .contact-form { 
+        float: none; 
+        width: 50%; 
+        padding: 0 1rem; 
+    }
+
+    .contact-item {
+        justify-content: flex-start; 
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .contact-details {
+        text-align: left;
+    }
+
+    .contact-form {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
 
 /* ---- Footer ---- */
 .footer {
-  background: #222;
-  color: #fff;
-  text-align: center;
-  padding: 2rem 1rem;
+    background: #222;
+    color: #fff;
+    text-align: center;
+    padding: 2rem 1rem;
 }
 .social-icons img {
-  width: 35px;
-  margin: 0 0.5rem;
-  transition: 0.3s;
+    width: 35px;
+    margin: 0 0.5rem;
+    transition: 0.3s;
+    filter: invert(1); /* Ensure social icons are visible on dark background */
 }
 .social-icons img:hover {
-  transform: scale(1.1);
-  background-color: #f53b57;
+    transform: scale(1.1);
+    background-color: var(--primary-color);
+    filter: none; /* Revert filter on hover if the image has color */
 }
 .footer-text {
-  color:#f1f1f1;
-  margin-top: 1rem;
-  text-transform: capitalize;
-  font-size: 0.9rem;
+    color:#f1f1f1;
+    margin-top: 1rem;
+    text-transform: capitalize;
+    font-size: 0.9rem;
 }
 .company {
-  color: #f53b57;
+    color: var(--primary-color);
 }
