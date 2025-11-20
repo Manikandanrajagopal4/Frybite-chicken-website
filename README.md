@@ -19,6 +19,8 @@ HTML          Provides the core content and semantic structure of the website.
 CSS           Handles all styling, responsiveness, and aesthetic effects. 
 JavaScript    Controls the mobile menu functionality and handles client-side form validation and asynchronous submission.
 
+📷 Preview :https://snazzy-salmiakki-4deede.netlify.app
+
 
 📞 Contact Information
 For project inquiries, collaboration, or feedback on this website:
